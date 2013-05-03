@@ -27,14 +27,14 @@ function draw(){
     canvas.clearRect(0,0,get('canvas').width,get('canvas').height);
     canvas.drawImage(get('buffer'),0,0)
 }
+function get(i){
+    return document.getElementById(i)
+}
 function resize(){
     get('buffer').width=get('canvas').width=window.innerWidth;
     get('buffer').height=get('canvas').height=window.innerHeight;
     x=get('canvas').width/2;
     y=get('canvas').height/2
-}
-function get(i){
-    return document.getElementById(i)
 }
 var buffer=canvas=i=mouse_down=mouse_x=mouse_y=x=y=0,
 mouse_lock_x=mouse_lock_y=-1,
@@ -76,4 +76,5 @@ window.onmouseup=function(){
         boxen.push([mouse_lock_x,mouse_lock_y,mouse_x-mouse_lock_x,mouse_y-mouse_lock_y])
     }
 };
+
 window.onresize=resize
