@@ -13,7 +13,7 @@ function draw(){
 	if(i>=0){
 		do{
 			buffer.beginPath();
-			buffer.rect(u[i][0],u[i][1],u[i][2],u[i][3]);
+			buffer.rect(boxen[i][0],boxen[i][1],boxen[i][2],boxen[i][3]);
 			buffer.closePath();
 			buffer.stroke()
 		}while(i--)
