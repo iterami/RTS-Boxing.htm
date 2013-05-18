@@ -1,5 +1,10 @@
 function draw(){
-    buffer.clearRect(0,0,get('buffer').width,get('buffer').height);
+    buffer.clearRect(
+        0,
+        0,
+        get('buffer').width,
+        get('buffer').height
+    );
 
     buffer.strokeStyle='#fff';
 
@@ -41,7 +46,12 @@ function draw(){
         50
     );
 
-    canvas.clearRect(0,0,get('canvas').width,get('canvas').height);
+    canvas.clearRect(
+        0,
+        0,
+        get('canvas').width,
+        get('canvas').height
+    );
     canvas.drawImage(get('buffer'),0,0)
 }
 function get(i){
@@ -54,6 +64,7 @@ function resize(){
     x = get('canvas').width/2;
     y = get('canvas').height/2
 }
+
 var boxen = [];
 var buffer = get('buffer').getContext('2d');
 var canvas = get('canvas').getContext('2d');
@@ -70,15 +81,15 @@ resize();
 
 setInterval('draw()',30);
 
-window.onkeydown=function(e){
-    i=window.event?event:e;
-    i=i.charCode?i.charCode:i.keyCode;
+window.onkeydown = function(e){
+    i = window.event ? event : e;
+    i = i.charCode ? i.charCode : i.keyCode;
     if(i===27){/*ESC*/
         /*delete all boxes*/
         boxen = []
     }
 };
-window.onmousedown=function(e){
+window.onmousedown = function(e){
     e.preventDefault();
     if(e.button===0){/*Left Click*/
         /*start new box*/
@@ -89,14 +100,14 @@ window.onmousedown=function(e){
         mouse_lock_y = mouse_y
     }
 };
-window.onmousemove=function(e){
+window.onmousemove = function(e){
     /*if mouse is down, update current box*/
     if(mouse_down>0){
         mouse_x = e.pageX;
         mouse_y = e.pageY
     }
 };
-window.onmouseup=function(){
+window.onmouseup = function(){
     mouse_down = 0;
     if(mouse_x-mouse_lock_x!=0 || mouse_y-mouse_lock_y!=0){
         /*add current box to array of boxes*/
@@ -109,4 +120,4 @@ window.onmouseup=function(){
     }
 };
 
-window.onresize=resize
+window.onresize = resize
