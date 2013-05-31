@@ -90,6 +90,7 @@ setInterval('draw()',30);
 window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
+
     if(i === 27){/*ESC*/
         /*delete all boxes*/
         boxen = []
@@ -99,10 +100,11 @@ window.onkeydown = function(e){
 window.onmousedown = function(e){
     e.preventDefault();
     if(e.button === 0){/*Left Click*/
-        /*start new box*/
         mouse_down = 1;
+
         mouse_x = e.pageX;
         mouse_y = e.pageY;
+
         mouse_lock_x = mouse_x;
         mouse_lock_y = mouse_y
     }
