@@ -18,7 +18,7 @@ function draw(){
             mouse_y - mouse_lock_y
         );
         buffer.closePath();
-        buffer.stroke()
+        buffer.stroke();
     }
 
     /*draw saved boxes*/
@@ -33,8 +33,8 @@ function draw(){
                 boxen[i][3]
             );
             buffer.closePath();
-            buffer.stroke()
-        }while(i--)
+            buffer.stroke();
+        }while(i--);
     }
 
     buffer.font = '23pt sans-serif';
@@ -56,11 +56,11 @@ function draw(){
         get('buffer'),
         0,
         0
-    )
+    );
 }
 
 function get(i){
-    return document.getElementById(i)
+    return document.getElementById(i);
 }
 
 function resize(){
@@ -68,7 +68,7 @@ function resize(){
     get('buffer').height = get('canvas').height = window.innerHeight;
 
     x = get('canvas').width / 2;
-    y = get('canvas').height / 2
+    y = get('canvas').height / 2;
 }
 
 var boxen = [];
@@ -85,7 +85,7 @@ var y = 0;
 
 resize();
 
-setInterval('draw()',30);
+setInterval('draw()', 30);
 
 window.onkeydown = function(e){
     i = window.event ? event : e;
@@ -93,7 +93,7 @@ window.onkeydown = function(e){
 
     if(i === 27){/*ESC*/
         /*delete all boxes*/
-        boxen = []
+        boxen = [];
     }
 };
 
@@ -106,7 +106,7 @@ window.onmousedown = function(e){
         mouse_y = e.pageY;
 
         mouse_lock_x = mouse_x;
-        mouse_lock_y = mouse_y
+        mouse_lock_y = mouse_y;
     }
 };
 
@@ -114,7 +114,7 @@ window.onmousemove = function(e){
     /*if mouse is down, update current box*/
     if(mouse_down > 0){
         mouse_x = e.pageX;
-        mouse_y = e.pageY
+        mouse_y = e.pageY;
     }
 };
 
@@ -127,8 +127,8 @@ window.onmouseup = function(){
             mouse_lock_y,/*top left y*/
             mouse_x - mouse_lock_x,/*width*/
             mouse_y - mouse_lock_y/*height*/
-        ])
+        ]);
     }
 };
 
-window.onresize = resize
+window.onresize = resize;
