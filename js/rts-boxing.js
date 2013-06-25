@@ -2,13 +2,13 @@ function draw(){
     buffer.clearRect(
         0,
         0,
-        get('buffer').width,
-        get('buffer').height
+        width,
+        height
     );
 
     buffer.strokeStyle = '#fff';
 
-    /*if mouse down, draw current box*/
+    /* if mouse down, draw current box */
     if(mouse_down === 1){
         buffer.beginPath();
         buffer.rect(
@@ -21,8 +21,8 @@ function draw(){
         buffer.stroke();
     }
 
-    /*draw saved boxes*/
-    i = boxen.length-1;
+    /* draw saved boxes */
+    i = boxen.length - 1;
     if(i >= 0){
         do{
             buffer.beginPath();
@@ -41,7 +41,7 @@ function draw(){
     buffer.textAlign = 'center';
     buffer.fillStyle = '#fff';
     buffer.fillText(
-        'Click+Drag! ESC=clear',
+        'Click + Drag! ESC = clear',
         x,
         50
     );
@@ -49,8 +49,8 @@ function draw(){
     canvas.clearRect(
         0,
         0,
-        get('canvas').width,
-        get('canvas').height
+        width,
+        height
     );
     canvas.drawImage(
         get('buffer'),
@@ -64,16 +64,17 @@ function get(i){
 }
 
 function resize(){
-    get('buffer').width = get('canvas').width = window.innerWidth;
-    get('buffer').height = get('canvas').height = window.innerHeight;
+    width = get('buffer').width = get('canvas').width = window.innerWidth;
+    height = get('buffer').height = get('canvas').height = window.innerHeight;
 
-    x = get('canvas').width / 2;
-    y = get('canvas').height / 2;
+    x = width / 2;
+    y = height / 2;
 }
 
 var boxen = [];
 var buffer = get('buffer').getContext('2d');
 var canvas = get('canvas').getContext('2d');
+var height = 0;
 var i = 0;
 var mouse_down = 0;
 var mouse_lock_x = -1;
@@ -81,6 +82,7 @@ var mouse_lock_y = -1;
 var mouse_x = 0;
 var mouse_y = 0;
 var x = 0;
+var width = 0;
 var y = 0;
 
 resize();
@@ -91,15 +93,15 @@ window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
 
-    if(i === 27){/*ESC*/
-        /*delete all boxes*/
+    if(i === 27){/* ESC */
+        /* delete all boxes */
         boxen = [];
     }
 };
 
 window.onmousedown = function(e){
     e.preventDefault();
-    if(e.button === 0){/*Left Click*/
+    if(e.button === 0){/* Left Click */
         mouse_down = 1;
 
         mouse_x = e.pageX;
@@ -111,7 +113,7 @@ window.onmousedown = function(e){
 };
 
 window.onmousemove = function(e){
-    /*if mouse is down, update current box*/
+    /* if mouse is down, update current box */
     if(mouse_down > 0){
         mouse_x = e.pageX;
         mouse_y = e.pageY;
@@ -121,12 +123,12 @@ window.onmousemove = function(e){
 window.onmouseup = function(){
     mouse_down = 0;
     if(mouse_x - mouse_lock_x != 0 || mouse_y - mouse_lock_y != 0){
-        /*add current box to array of boxes*/
+        /* add current box to array of boxes */
         boxen.push([
-            mouse_lock_x,/*top left x*/
-            mouse_lock_y,/*top left y*/
-            mouse_x - mouse_lock_x,/*width*/
-            mouse_y - mouse_lock_y/*height*/
+            mouse_lock_x,/* top left x */
+            mouse_lock_y,/* top left y */
+            mouse_x - mouse_lock_x,/* width */
+            mouse_y - mouse_lock_y/* height */
         ]);
     }
 };
