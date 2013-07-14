@@ -8,7 +8,7 @@ function draw(){
 
     buffer.strokeStyle = '#fff';
 
-    /* if mouse down, draw current box */
+    // if mouse down, draw current box
     if(mouse_down === 1){
         buffer.beginPath();
         buffer.rect(
@@ -21,7 +21,7 @@ function draw(){
         buffer.stroke();
     }
 
-    /* draw saved boxes */
+    // draw saved boxes
     i = boxen.length - 1;
     if(i >= 0){
         do{
@@ -98,15 +98,15 @@ window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
 
-    if(i === 27){/* ESC */
-        /* delete all boxes */
+    if(i === 27){// ESC
+        // delete all boxes
         boxen = [];
     }
 };
 
 window.onmousedown = function(e){
     e.preventDefault();
-    if(e.button === 0){/* Left Click */
+    if(e.button === 0){// Left Click
         mouse_down = 1;
 
         mouse_x = e.pageX;
@@ -118,7 +118,7 @@ window.onmousedown = function(e){
 };
 
 window.onmousemove = function(e){
-    /* if mouse is down, update current box */
+    // if mouse is down, update current box
     if(mouse_down > 0){
         mouse_x = e.pageX;
         mouse_y = e.pageY;
@@ -128,12 +128,12 @@ window.onmousemove = function(e){
 window.onmouseup = function(){
     mouse_down = 0;
     if(mouse_x - mouse_lock_x != 0 || mouse_y - mouse_lock_y != 0){
-        /* add current box to array of boxes */
+        // add current box to array of boxes
         boxen.push([
-            mouse_lock_x,/* top left x */
-            mouse_lock_y,/* top left y */
-            mouse_x - mouse_lock_x,/* width */
-            mouse_y - mouse_lock_y/* height */
+            mouse_lock_x,// top left x
+            mouse_lock_y,// top left y
+            mouse_x - mouse_lock_x,// width
+            mouse_y - mouse_lock_y// height
         ]);
     }
 };
