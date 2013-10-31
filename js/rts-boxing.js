@@ -42,7 +42,7 @@ function draw(){
     buffer.fillStyle = '#fff';
     buffer.fillText(
         'Click + Drag! ESC = clear',
-        x,
+        width / 2,
         50
     );
 
@@ -71,9 +71,6 @@ function resize(){
     height = window.innerHeight;
     get('buffer').height = height;
     get('canvas').height = height;
-
-    x = width / 2;
-    y = height / 2;
 }
 
 var boxen = [];
@@ -86,9 +83,7 @@ var mouse_lock_x = -1;
 var mouse_lock_y = -1;
 var mouse_x = 0;
 var mouse_y = 0;
-var x = 0;
 var width = 0;
-var y = 0;
 
 resize();
 
