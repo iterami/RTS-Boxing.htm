@@ -1,61 +1,49 @@
 function draw(){
-    buffer.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-    buffer.strokeStyle = '#fff';
-
-    // if mouse down, draw current box
-    if(mouse_down === 1){
-        buffer.beginPath();
-        buffer.rect(
-            mouse_lock_x,
-            mouse_lock_y,
-            mouse_x - mouse_lock_x,
-            mouse_y - mouse_lock_y
-        );
-        buffer.closePath();
-        buffer.stroke();
-    }
-
-    // draw saved boxes
-    i = boxen.length - 1;
-    if(i >= 0){
-        do{
-            buffer.beginPath();
-            buffer.rect(
-                boxen[i][0],
-                boxen[i][1],
-                boxen[i][2],
-                boxen[i][3]
-            );
-            buffer.closePath();
-            buffer.stroke();
-        }while(i--);
-    }
-
-    buffer.font = '23pt sans-serif';
-    buffer.textAlign = 'center';
-    buffer.fillStyle = '#fff';
-    buffer.fillText(
-        'Click + Drag! ESC = clear',
-        width / 2,
-        50
-    );
-
     canvas.clearRect(
         0,
         0,
         width,
         height
     );
-    canvas.drawImage(
-        get('buffer'),
-        0,
-        0
+
+    canvas.strokeStyle = '#fff';
+
+    // if mouse down, draw current box
+    if(mouse_down === 1){
+        canvas.beginPath();
+        canvas.rect(
+            mouse_lock_x,
+            mouse_lock_y,
+            mouse_x - mouse_lock_x,
+            mouse_y - mouse_lock_y
+        );
+        canvas.closePath();
+        canvas.stroke();
+    }
+
+    // draw saved boxes
+    i = boxen.length - 1;
+    if(i >= 0){
+        do{
+            canvas.beginPath();
+            canvas.rect(
+                boxen[i][0],
+                boxen[i][1],
+                boxen[i][2],
+                boxen[i][3]
+            );
+            canvas.closePath();
+            canvas.stroke();
+        }while(i--);
+    }
+
+    canvas.font = '23pt sans-serif';
+    canvas.textAlign = 'center';
+    canvas.fillStyle = '#fff';
+    canvas.fillText(
+        'Click + Drag! ESC = Clear',
+        width / 2,
+        50
     );
 }
 
@@ -65,16 +53,17 @@ function get(i){
 
 function resize(){
     width = window.innerWidth;
-    get('buffer').width = width;
+    get('canvas').width = width;
     get('canvas').width = width;
 
     height = window.innerHeight;
-    get('buffer').height = height;
     get('canvas').height = height;
+    get('canvas').height = height;
+
+    draw();
 }
 
 var boxen = [];
-var buffer = get('buffer').getContext('2d');
 var canvas = get('canvas').getContext('2d');
 var height = 0;
 var i = 0;
@@ -87,15 +76,14 @@ var width = 0;
 
 resize();
 
-setInterval('draw()', 30);
-
 window.onkeydown = function(e){
     i = window.event ? event : e;
-    i = i.charCode ? i.charCode : i.keyCode;
 
-    if(i === 27){// ESC
+    if((i.charCode ? i.charCode : i.keyCode) === 27){// ESC
         // delete all boxes
         boxen = [];
+
+        draw();
     }
 };
 
@@ -117,6 +105,8 @@ window.onmousemove = function(e){
     if(mouse_down > 0){
         mouse_x = e.pageX;
         mouse_y = e.pageY;
+
+        draw();
     }
 };
 
