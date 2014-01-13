@@ -54,10 +54,8 @@ function get(i){
 function resize(){
     width = window.innerWidth;
     get('canvas').width = width;
-    get('canvas').width = width;
 
     height = window.innerHeight;
-    get('canvas').height = height;
     get('canvas').height = height;
 
     draw();
