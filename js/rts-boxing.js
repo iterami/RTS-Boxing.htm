@@ -1,9 +1,9 @@
 function draw(){
     canvas.clearRect(
-        0,
-        0,
-        width,
-        height
+      0,
+      0,
+      width,
+      height
     );
 
     canvas.strokeStyle = '#fff';
@@ -12,10 +12,10 @@ function draw(){
     if(mouse_down === 1){
         canvas.beginPath();
         canvas.rect(
-            mouse_lock_x,
-            mouse_lock_y,
-            mouse_x - mouse_lock_x,
-            mouse_y - mouse_lock_y
+          mouse_lock_x,
+          mouse_lock_y,
+          mouse_x - mouse_lock_x,
+          mouse_y - mouse_lock_y
         );
         canvas.closePath();
         canvas.stroke();
@@ -27,10 +27,10 @@ function draw(){
         do{
             canvas.beginPath();
             canvas.rect(
-                boxen[i][0],
-                boxen[i][1],
-                boxen[i][2],
-                boxen[i][3]
+              boxen[i][0],
+              boxen[i][1],
+              boxen[i][2],
+              boxen[i][3]
             );
             canvas.closePath();
             canvas.stroke();
@@ -41,28 +41,24 @@ function draw(){
     canvas.textAlign = 'center';
     canvas.fillStyle = '#fff';
     canvas.fillText(
-        'Click + Drag! ESC = Clear',
-        width / 2,
-        50
+      'Click + Drag! ESC = Clear',
+      width / 2,
+      50
     );
-}
-
-function get(i){
-    return document.getElementById(i);
 }
 
 function resize(){
     width = window.innerWidth;
-    get('canvas').width = width;
+    document.getElementById('canvas').width = width;
 
     height = window.innerHeight;
-    get('canvas').height = height;
+    document.getElementById('canvas').height = height;
 
     draw();
 }
 
 var boxen = [];
-var canvas = get('canvas').getContext('2d');
+var canvas = document.getElementById('canvas').getContext('2d');
 var height = 0;
 var i = 0;
 var mouse_down = 0;
@@ -78,7 +74,7 @@ window.onkeydown = function(e){
     i = window.event ? event : e;
 
     if((i.charCode ? i.charCode : i.keyCode) === 27){// ESC
-        // delete all boxes
+        // delete flock of boxen
         boxen = [];
 
         draw();
@@ -110,13 +106,14 @@ window.onmousemove = function(e){
 
 window.onmouseup = function(){
     mouse_down = 0;
-    if(mouse_x - mouse_lock_x != 0 || mouse_y - mouse_lock_y != 0){
+    if(mouse_x - mouse_lock_x != 0
+      || mouse_y - mouse_lock_y != 0){
         // add current box to array of boxes
         boxen.push([
-            mouse_lock_x,// top left x
-            mouse_lock_y,// top left y
-            mouse_x - mouse_lock_x,// width
-            mouse_y - mouse_lock_y// height
+          mouse_lock_x,// top left x
+          mouse_lock_y,// top left y
+          mouse_x - mouse_lock_x,// width
+          mouse_y - mouse_lock_y// height
         ]);
     }
 };
