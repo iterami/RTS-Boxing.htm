@@ -41,7 +41,9 @@ function draw(){
     canvas.textAlign = 'center';
     canvas.fillStyle = '#fff';
     canvas.fillText(
-      'Click + Drag! ESC = Clear',
+      'Click + Drag! '
+        + boxen.length + '!'
+        + ' ESC = Clear',
       width / 2,
       50
     );
