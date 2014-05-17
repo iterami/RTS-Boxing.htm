@@ -22,19 +22,19 @@ function draw(){
     }
 
     // draw saved boxes
-    i = boxen.length - 1;
-    if(i >= 0){
+    var loop_counter = boxen.length - 1;
+    if(loop_counter >= 0){
         do{
             canvas.beginPath();
             canvas.rect(
-              boxen[i][0],
-              boxen[i][1],
-              boxen[i][2],
-              boxen[i][3]
+              boxen[loop_counter][0],
+              boxen[loop_counter][1],
+              boxen[loop_counter][2],
+              boxen[loop_counter][3]
             );
             canvas.closePath();
             canvas.stroke();
-        }while(i--);
+        }while(loop_counter--);
     }
 
     canvas.font = '23pt sans-serif';
@@ -50,11 +50,11 @@ function draw(){
 }
 
 function resize(){
-    width = window.innerWidth;
-    document.getElementById('canvas').width = width;
-
     height = window.innerHeight;
     document.getElementById('canvas').height = height;
+
+    width = window.innerWidth;
+    document.getElementById('canvas').width = width;
 
     draw();
 }
@@ -62,7 +62,6 @@ function resize(){
 var boxen = [];
 var canvas = document.getElementById('canvas').getContext('2d');
 var height = 0;
-var i = 0;
 var mouse_down = 0;
 var mouse_lock_x = -1;
 var mouse_lock_y = -1;
@@ -73,9 +72,9 @@ var width = 0;
 resize();
 
 window.onkeydown = function(e){
-    i = window.event ? event : e;
+    var key = window.event ? event : e;
 
-    if((i.charCode ? i.charCode : i.keyCode) === 27){// ESC
+    if((key.charCode ? key.charCode : key.keyCode) === 27){// ESC
         // delete flock of boxen
         boxen = [];
 
