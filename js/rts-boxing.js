@@ -8,7 +8,7 @@ function draw(){
 
     canvas.strokeStyle = '#fff';
 
-    // if mouse down, draw current box
+    // If mouse down, draw current unsaved box.
     if(mouse_down === 1){
         canvas.beginPath();
         canvas.rect(
@@ -21,7 +21,7 @@ function draw(){
         canvas.stroke();
     }
 
-    // draw saved boxes
+    // Draw saved boxem.
     var loop_counter = boxen.length - 1;
     if(loop_counter >= 0){
         do{
@@ -73,18 +73,20 @@ resize();
 
 window.onkeydown = function(e){
     var key = window.event ? event : e;
+    key = key.charCode ? key.charCode : key.keyCode;
 
-    if((key.charCode ? key.charCode : key.keyCode) === 27){// ESC
-        // delete flock of boxen
+    // ESC: delete saved boxen.
+    if(key === 27){
         boxen = [];
-
         draw();
     }
 };
 
 window.onmousedown = function(e){
     e.preventDefault();
-    if(e.button === 0){// Left Click
+
+    // Left Click: begin new unsaved box.
+    if(e.button === 0){
         mouse_down = 1;
 
         mouse_x = e.pageX;
@@ -96,7 +98,7 @@ window.onmousedown = function(e){
 };
 
 window.onmousemove = function(e){
-    // if mouse is down, update current box
+    // If mouse is down, update current unsaved box.
     if(mouse_down > 0){
         mouse_x = e.pageX;
         mouse_y = e.pageY;
@@ -107,14 +109,15 @@ window.onmousemove = function(e){
 
 window.onmouseup = function(){
     mouse_down = 0;
+
     if(mouse_x - mouse_lock_x != 0
       || mouse_y - mouse_lock_y != 0){
-        // add current box to array of boxes
+        // Add current box to array of saved boxen.
         boxen.push([
-          mouse_lock_x,// top left x
-          mouse_lock_y,// top left y
-          mouse_x - mouse_lock_x,// width
-          mouse_y - mouse_lock_y// height
+          mouse_lock_x,// X
+          mouse_lock_y,// Y
+          mouse_x - mouse_lock_x,// Width
+          mouse_y - mouse_lock_y,// Height
         ]);
     }
 };
