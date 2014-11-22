@@ -72,8 +72,7 @@ var width = 0;
 resize();
 
 window.onkeydown = function(e){
-    var key = window.event ? event : e;
-    key = key.charCode ? key.charCode : key.keyCode;
+    var key = e.keyCode || e.which;
 
     // ESC: delete saved boxen.
     if(key === 27){
