@@ -9,7 +9,7 @@ function draw(){
     canvas.strokeStyle = '#fff';
 
     // If mouse down, draw current unsaved box.
-    if(mouse_down === 1){
+    if(mouse_down){
         canvas.beginPath();
         canvas.rect(
           mouse_lock_x,
@@ -62,7 +62,7 @@ function resize(){
 var boxen = [];
 var canvas = document.getElementById('canvas').getContext('2d');
 var height = 0;
-var mouse_down = 0;
+var mouse_down = false;
 var mouse_lock_x = -1;
 var mouse_lock_y = -1;
 var mouse_x = 0;
@@ -81,12 +81,13 @@ window.onkeydown = function(e){
     }
 };
 
-window.onmousedown = function(e){
+window.onmousedown =
+  window.ontouchstart = function(e){
     e.preventDefault();
 
     // Left Click: begin new unsaved box.
     if(e.button === 0){
-        mouse_down = 1;
+        mouse_down = true;
 
         mouse_x = e.pageX;
         mouse_y = e.pageY;
@@ -96,9 +97,10 @@ window.onmousedown = function(e){
     }
 };
 
-window.onmousemove = function(e){
+window.onmousemove =
+  window.ontouchmove = function(e){
     // If mouse is down, update current unsaved box.
-    if(mouse_down > 0){
+    if(mouse_down){
         mouse_x = e.pageX;
         mouse_y = e.pageY;
 
@@ -106,8 +108,10 @@ window.onmousemove = function(e){
     }
 };
 
-window.onmouseup = function(){
-    mouse_down = 0;
+window.onmouseup =
+  window.ontouchcancel =
+  window.ontouchend = function(){
+    mouse_down = false;
 
     if(mouse_x - mouse_lock_x != 0
       || mouse_y - mouse_lock_y != 0){
@@ -118,6 +122,8 @@ window.onmouseup = function(){
           mouse_x - mouse_lock_x,// Width
           mouse_y - mouse_lock_y,// Height
         ]);
+
+        draw();
     }
 };
 
