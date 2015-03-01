@@ -22,19 +22,16 @@ function draw(){
     }
 
     // Draw saved boxem.
-    var loop_counter = boxen.length - 1;
-    if(loop_counter >= 0){
-        do{
-            canvas.beginPath();
-            canvas.rect(
-              boxen[loop_counter][0],
-              boxen[loop_counter][1],
-              boxen[loop_counter][2],
-              boxen[loop_counter][3]
-            );
-            canvas.closePath();
-            canvas.stroke();
-        }while(loop_counter--);
+    for(var box in boxen){
+        canvas.beginPath();
+        canvas.rect(
+          boxen[box][0],
+          boxen[box][1],
+          boxen[box][2],
+          boxen[box][3]
+        );
+        canvas.closePath();
+        canvas.stroke();
     }
 
     canvas.font = '23pt sans-serif';
