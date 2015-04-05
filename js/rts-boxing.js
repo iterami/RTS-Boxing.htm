@@ -66,8 +66,6 @@ var mouse_x = 0;
 var mouse_y = 0;
 var width = 0;
 
-resize();
-
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
 
@@ -77,6 +75,8 @@ window.onkeydown = function(e){
         draw();
     }
 };
+
+window.onload = resize;
 
 window.onmousedown =
   window.ontouchstart = function(e){
