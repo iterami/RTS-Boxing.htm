@@ -21,14 +21,14 @@ function draw(){
         canvas.stroke();
     }
 
-    // Draw saved boxem.
+    // Draw saved boxen.
     for(var box in boxen){
         canvas.beginPath();
         canvas.rect(
-          boxen[box][0],
-          boxen[box][1],
-          boxen[box][2],
-          boxen[box][3]
+          boxen[box]['x'],
+          boxen[box]['y'],
+          boxen[box]['width'],
+          boxen[box]['height']
         );
         canvas.closePath();
         canvas.stroke();
@@ -80,29 +80,31 @@ window.onload = resize;
 
 window.onmousedown =
   window.ontouchstart = function(e){
+    // Only handle left clicks.
+    if(e.button !== 0){
+        return;
+    }
+
     e.preventDefault();
 
-    // Left Click: begin new unsaved box.
-    if(e.button === 0){
-        mouse_down = true;
+    mouse_down = true;
+    mouse_x = e.pageX;
+    mouse_y = e.pageY;
 
-        mouse_x = e.pageX;
-        mouse_y = e.pageY;
-
-        mouse_lock_x = mouse_x;
-        mouse_lock_y = mouse_y;
-    }
+    mouse_lock_x = mouse_x;
+    mouse_lock_y = mouse_y;
 };
 
 window.onmousemove =
   window.ontouchmove = function(e){
-    // If mouse is down, update current unsaved box.
-    if(mouse_down){
-        mouse_x = e.pageX;
-        mouse_y = e.pageY;
-
-        draw();
+    if(!mouse_down){
+        return;
     }
+
+    mouse_x = e.pageX;
+    mouse_y = e.pageY;
+
+    draw();
 };
 
 window.onmouseup =
@@ -110,18 +112,24 @@ window.onmouseup =
   window.ontouchend = function(){
     mouse_down = false;
 
-    if(mouse_x - mouse_lock_x != 0
-      || mouse_y - mouse_lock_y != 0){
-        // Add current box to array of saved boxen.
-        boxen.push([
-          mouse_lock_x,// X
-          mouse_lock_y,// Y
-          mouse_x - mouse_lock_x,// Width
-          mouse_y - mouse_lock_y,// Height
-        ]);
-
-        draw();
+    if(mouse_x - mouse_lock_x == 0
+      && mouse_y - mouse_lock_y == 0){
+        return;
     }
+
+    boxen.push({
+      'height': mouse_y - mouse_lock_y,
+      'width': mouse_x - mouse_lock_x,
+      'x': mouse_lock_x,
+      'y': mouse_lock_y,
+    });
+
+    mouse_lock_x = 0;
+    mouse_lock_y = 0;
+    mouse_x = 0;
+    mouse_y = 0;
+
+    draw();
 };
 
 window.onresize = resize;
