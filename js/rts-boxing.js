@@ -35,14 +35,12 @@ function draw(){
     }
 
     canvas.font = '23pt sans-serif';
-    canvas.textAlign = 'center';
     canvas.fillStyle = '#fff';
     canvas.fillText(
-      'Click + Drag! '
-        + boxen.length + '!'
-        + ' ESC = Clear',
-      width / 2,
-      50
+      'Click + Drag! ESC = Clear! '
+        + boxen.length + '!',
+      5,
+      25
     );
 }
 
