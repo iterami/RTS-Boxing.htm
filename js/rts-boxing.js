@@ -112,8 +112,8 @@ window.onmouseup =
   window.ontouchend = function(){
     mouse_down = false;
 
-    if(mouse_x - mouse_lock_x == 0
-      && mouse_y - mouse_lock_y == 0){
+    if(mouse_x - mouse_lock_x === 0
+      && mouse_y - mouse_lock_y === 0){
         return;
     }
 
