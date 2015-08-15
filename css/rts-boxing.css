@@ -2,7 +2,6 @@ body{
     background: #000;
 }
 canvas{
-    background: #000;
     cursor: pointer;
     left: 0;
     position: absolute;

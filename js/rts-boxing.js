@@ -57,7 +57,9 @@ function resize(){
 }
 
 var boxen = [];
-var canvas = document.getElementById('canvas').getContext('2d');
+var canvas = document.getElementById('canvas').getContext('2d', {
+  'alpha': false,
+});
 var height = 0;
 var mouse_down = false;
 var mouse_lock_x = -1;
