@@ -8,8 +8,6 @@ function draw(){
       height
     );
 
-    canvas.strokeStyle = '#fff';
-
     // If mouse down, draw current unsaved box.
     if(mouse_down){
         canvas.beginPath();
@@ -37,7 +35,6 @@ function draw(){
     }
 
     canvas.font = '23pt sans-serif';
-    canvas.fillStyle = '#fff';
     canvas.fillText(
       'Click + Drag! ESC = Clear! '
         + boxen.length + '!',
@@ -53,6 +50,8 @@ function resize(){
     width = window.innerWidth;
     document.getElementById('canvas').width = width;
 
+    canvas.fillStyle = '#fff';
+    canvas.strokeStyle = '#fff';
     draw();
 }
 
