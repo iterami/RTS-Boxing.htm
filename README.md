@@ -9,3 +9,8 @@ Action      | Key
 ------------|------------------------------
 Clear Boxes | ESC
 New Box     | Left Mouse Click + Mouse Drag
+
+---
+
+Requires:
+* [iterami/common](https://github.com/iterami/common)
