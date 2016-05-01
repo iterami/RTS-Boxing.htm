@@ -1,41 +1,34 @@
 'use strict';
 
-function draw(){
-    canvas.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-
+function draw_logic(){
     // If mouse down, draw current unsaved box.
     if(mouse_down){
-        canvas.beginPath();
-        canvas.rect(
+        buffer.beginPath();
+        buffer.rect(
           mouse_lock_x,
           mouse_lock_y,
           mouse_x - mouse_lock_x,
           mouse_y - mouse_lock_y
         );
-        canvas.closePath();
-        canvas.stroke();
+        buffer.closePath();
+        buffer.stroke();
     }
 
     // Draw saved boxen.
     for(var box in boxen){
-        canvas.beginPath();
-        canvas.rect(
+        buffer.beginPath();
+        buffer.rect(
           boxen[box]['x'],
           boxen[box]['y'],
           boxen[box]['width'],
           boxen[box]['height']
         );
-        canvas.closePath();
-        canvas.stroke();
+        buffer.closePath();
+        buffer.stroke();
     }
 
-    canvas.font = '23pt sans-serif';
-    canvas.fillText(
+    buffer.font = '23pt sans-serif';
+    buffer.fillText(
       'Click + Drag! ESC = Clear! '
         + boxen.length + '!',
       5,
@@ -43,29 +36,18 @@ function draw(){
     );
 }
 
-function resize(){
-    height = window.innerHeight;
-    document.getElementById('canvas').height = height;
-
-    width = window.innerWidth;
-    document.getElementById('canvas').width = width;
-
-    canvas.fillStyle = '#fff';
-    canvas.strokeStyle = '#fff';
+function resize_logic(){
+    buffer.fillStyle = '#fff';
+    buffer.strokeStyle = '#fff';
     draw();
 }
 
 var boxen = [];
-var canvas = document.getElementById('canvas').getContext('2d', {
-  'alpha': false,
-});
-var height = 0;
 var mouse_down = false;
 var mouse_lock_x = -1;
 var mouse_lock_y = -1;
 var mouse_x = 0;
 var mouse_y = 0;
-var width = 0;
 
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
@@ -77,7 +59,7 @@ window.onkeydown = function(e){
     }
 };
 
-window.onload = resize;
+window.onload = init_canvas;
 
 window.onmousedown =
   window.ontouchstart = function(e){
@@ -132,5 +114,3 @@ window.onmouseup =
 
     draw();
 };
-
-window.onresize = resize;
