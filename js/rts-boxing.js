@@ -27,7 +27,7 @@ function draw_logic(){
         buffer.stroke();
     }
 
-    buffer.font = '23pt sans-serif';
+    buffer.font = font;
     buffer.fillText(
       'Click + Drag! ESC = Clear! '
         + boxen.length + '!',
