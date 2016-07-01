@@ -27,7 +27,6 @@ function draw_logic(){
         buffer.stroke();
     }
 
-    buffer.font = font;
     buffer.fillText(
       'Click + Drag! ESC = Clear! '
         + boxen.length + '!',
