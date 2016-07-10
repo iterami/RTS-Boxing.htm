@@ -2,13 +2,13 @@
 
 function draw_logic(){
     // If mouse down, draw current unsaved box.
-    if(mouse['down']){
+    if(input_mouse['down']){
         buffer.beginPath();
         buffer.rect(
-          mouse['down-x'],
-          mouse['down-y'],
-          mouse['x'] - mouse['down-x'],
-          mouse['y'] - mouse['down-y']
+          input_mouse['down-x'],
+          input_mouse['down-y'],
+          input_mouse['x'] - input_mouse['down-x'],
+          input_mouse['y'] - input_mouse['down-y']
         );
         buffer.closePath();
         buffer.stroke();
@@ -45,7 +45,7 @@ var boxen = [];
 
 window.onload = function(e){
     init_canvas();
-    init_input(
+    input_init(
       {
         27: {
           'todo': function(){
@@ -57,7 +57,7 @@ window.onload = function(e){
       {
         'mousemove': {
           'todo': function(){
-              if(!mouse['down']){
+              if(!input_mouse['down']){
                   return;
               }
               draw();
@@ -66,10 +66,10 @@ window.onload = function(e){
         'mouseup': {
           'todo': function(){
               boxen.push({
-                'height': mouse['y'] - mouse['down-y'],
-                'width': mouse['x'] - mouse['down-x'],
-                'x': mouse['down-x'],
-                'y': mouse['down-y'],
+                'height': input_mouse['y'] - input_mouse['down-y'],
+                'width': input_mouse['x'] - input_mouse['down-x'],
+                'x': input_mouse['down-x'],
+                'y': input_mouse['down-y'],
               });
               draw();
           },
