@@ -3,31 +3,31 @@
 function draw_logic(){
     // If mouse down, draw current unsaved box.
     if(input_mouse['down']){
-        buffer.beginPath();
-        buffer.rect(
+        canvas_buffer.beginPath();
+        canvas_buffer.rect(
           input_mouse['down-x'],
           input_mouse['down-y'],
           input_mouse['x'] - input_mouse['down-x'],
           input_mouse['y'] - input_mouse['down-y']
         );
-        buffer.closePath();
-        buffer.stroke();
+        canvas_buffer.closePath();
+        canvas_buffer.stroke();
     }
 
     // Draw saved boxen.
     for(var box in boxen){
-        buffer.beginPath();
-        buffer.rect(
+        canvas_buffer.beginPath();
+        canvas_buffer.rect(
           boxen[box]['x'],
           boxen[box]['y'],
           boxen[box]['width'],
           boxen[box]['height']
         );
-        buffer.closePath();
-        buffer.stroke();
+        canvas_buffer.closePath();
+        canvas_buffer.stroke();
     }
 
-    buffer.fillText(
+    canvas_buffer.fillText(
       'Click + Drag! ESC = Clear! '
         + boxen.length + '!',
       5,
@@ -36,21 +36,21 @@ function draw_logic(){
 }
 
 function resize_logic(){
-    buffer.fillStyle = '#fff';
-    buffer.strokeStyle = '#fff';
-    draw();
+    canvas_buffer.fillStyle = '#fff';
+    canvas_buffer.strokeStyle = '#fff';
+    canvas_draw();
 }
 
 var boxen = [];
 
 window.onload = function(e){
-    init_canvas();
+    canvas_init();
     input_init(
       {
         27: {
           'todo': function(){
               boxen = [];
-              draw();
+              canvas_draw();
           },
         },
       },
@@ -60,7 +60,7 @@ window.onload = function(e){
               if(!input_mouse['down']){
                   return;
               }
-              draw();
+              canvas_draw();
           },
         },
         'mouseup': {
@@ -71,7 +71,7 @@ window.onload = function(e){
                 'x': input_mouse['down-x'],
                 'y': input_mouse['down-y'],
               });
-              draw();
+              canvas_draw();
           },
         },
       }
