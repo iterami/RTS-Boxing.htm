@@ -38,7 +38,6 @@ function draw_logic(){
 function resize_logic(){
     canvas_buffer.fillStyle = '#fff';
     canvas_buffer.strokeStyle = '#fff';
-    canvas_draw();
 }
 
 var boxen = [];
@@ -50,19 +49,10 @@ window.onload = function(e){
         27: {
           'todo': function(){
               boxen = [];
-              canvas_draw();
           },
         },
       },
       {
-        'mousemove': {
-          'todo': function(){
-              if(!input_mouse['down']){
-                  return;
-              }
-              canvas_draw();
-          },
-        },
         'mouseup': {
           'todo': function(){
               boxen.push({
@@ -71,7 +61,6 @@ window.onload = function(e){
                 'x': input_mouse['down-x'],
                 'y': input_mouse['down-y'],
               });
-              canvas_draw();
           },
         },
       }
