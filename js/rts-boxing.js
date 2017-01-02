@@ -44,15 +44,15 @@ var boxen = [];
 
 window.onload = function(e){
     canvas_init();
-    input_init(
-      {
+    input_init({
+      'keybinds': {
         27: {
           'todo': function(){
               boxen = [];
           },
         },
       },
-      {
+      'mousebinds': {
         'mouseup': {
           'todo': function(){
               boxen.push({
@@ -63,6 +63,6 @@ window.onload = function(e){
               });
           },
         },
-      }
-    );
+      },
+    });
 };
