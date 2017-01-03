@@ -3,28 +3,34 @@
 function draw_logic(){
     // If mouse down, draw current unsaved box.
     if(input_mouse['down']){
-        canvas_buffer.beginPath();
-        canvas_buffer.rect(
-          input_mouse['down-x'],
-          input_mouse['down-y'],
-          input_mouse['x'] - input_mouse['down-x'],
-          input_mouse['y'] - input_mouse['down-y']
-        );
-        canvas_buffer.closePath();
-        canvas_buffer.stroke();
+        canvas_draw_path({
+          'style': 'stroke',
+          'vertices': [
+            {
+              'type': 'rect',
+              'radius': input_mouse['x'] - input_mouse['down-x'], //x2
+              'startAngle': input_mouse['y'] - input_mouse['down-y'], //y2
+              'x': input_mouse['down-x'],
+              'y': input_mouse['down-y'],
+            },
+          ],
+        });
     }
 
     // Draw saved boxen.
     for(var box in boxen){
-        canvas_buffer.beginPath();
-        canvas_buffer.rect(
-          boxen[box]['x'],
-          boxen[box]['y'],
-          boxen[box]['width'],
-          boxen[box]['height']
-        );
-        canvas_buffer.closePath();
-        canvas_buffer.stroke();
+        canvas_draw_path({
+          'style': 'stroke',
+          'vertices': [
+            {
+              'type': 'rect',
+              'radius': boxen[box]['width'], //x2
+              'startAngle': boxen[box]['height'], //y2
+              'x': boxen[box]['x'],
+              'y': boxen[box]['y'],
+            },
+          ],
+        });
     }
 
     canvas_buffer.fillText(
