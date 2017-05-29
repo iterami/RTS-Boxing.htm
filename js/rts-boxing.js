@@ -41,16 +41,8 @@ function draw_logic(){
     );
 }
 
-function resize_logic(){
-    canvas_buffer.fillStyle = '#fff';
-    canvas_buffer.strokeStyle = '#fff';
-}
-
-var boxen = [];
-
-window.onload = function(e){
-    canvas_init();
-    core_input_init({
+function repo_init(){
+    core_input_binds_add({
       'keybinds': {
         27: {
           'todo': function(){
@@ -71,4 +63,12 @@ window.onload = function(e){
         },
       },
     });
-};
+    canvas_init();
+}
+
+function resize_logic(){
+    canvas_buffer.fillStyle = '#fff';
+    canvas_buffer.strokeStyle = '#fff';
+}
+
+var boxen = [];
