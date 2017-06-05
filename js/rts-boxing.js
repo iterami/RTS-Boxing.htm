@@ -44,15 +44,12 @@ function draw_logic(){
     );
 }
 
+function repo_escape(){
+    boxen = [];
+}
+
 function repo_init(){
     core_events_bind({
-      'keybinds': {
-        27: {
-          'todo': function(){
-              boxen = [];
-          },
-        },
-      },
       'mousebinds': {
         'mouseup': {
           'todo': function(){
