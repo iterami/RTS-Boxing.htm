@@ -50,9 +50,6 @@ function repo_escape(){
 
 function repo_init(){
     core_repo_init({
-      'title': 'RTS-Boxing.htm',
-    });
-    core_events_bind({
       'mousebinds': {
         'mouseup': {
           'todo': function(){
@@ -65,6 +62,7 @@ function repo_init(){
           },
         },
       },
+      'title': 'RTS-Boxing.htm',
     });
     canvas_init();
 }
