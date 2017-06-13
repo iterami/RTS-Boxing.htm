@@ -35,13 +35,6 @@ function draw_logic(){
           'y': boxen[box]['y'],
         });
     }
-
-    canvas_buffer.fillText(
-      'Click + Drag! ESC = Clear! '
-        + boxen.length + '!',
-      5,
-      25
-    );
 }
 
 function repo_escape(){
@@ -50,6 +43,7 @@ function repo_escape(){
 
 function repo_init(){
     core_repo_init({
+      'info': 'Click + Drag<br>ESC = Clear',
       'mousebinds': {
         'mouseup': {
           'todo': function(){
