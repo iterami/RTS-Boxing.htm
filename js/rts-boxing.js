@@ -1,5 +1,10 @@
 'use strict';
 
+function clear_boxen(){
+    boxen = [];
+    core_escape();
+}
+
 function draw_boxen(args){
     canvas_draw_path({
       'style': 'stroke',
@@ -37,13 +42,9 @@ function draw_logic(){
     }
 }
 
-function repo_escape(){
-    boxen = [];
-}
-
 function repo_init(){
     core_repo_init({
-      'info': 'Click + Drag<br>ESC = Clear',
+      'info': 'Click + Drag<br><input onclick=clear_boxen() type=button value="Clear Boxen">',
       'mousebinds': {
         'mouseup': {
           'todo': function(){
