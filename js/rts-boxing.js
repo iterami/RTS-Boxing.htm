@@ -11,11 +11,11 @@ function draw_boxen(args){
       'vertices': [
         {
           'type': 'rect',
-           'radius': args['radius'],
-           'startAngle': args['startAngle'],
-           'x': args['x'],
-           'y': args['y'],
-         },
+          'radius': args['radius'],
+          'startAngle': args['startAngle'],
+          'x': args['x'],
+          'y': args['y'],
+        },
       ],
     });
 }
@@ -63,7 +63,6 @@ function repo_init(){
 }
 
 function resize_logic(){
-    canvas_buffer.fillStyle = '#fff';
     canvas_buffer.strokeStyle = '#fff';
 }
 
