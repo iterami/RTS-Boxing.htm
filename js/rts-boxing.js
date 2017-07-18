@@ -1,58 +1,51 @@
 'use strict';
 
-function clear_boxen(){
-    boxen = [];
-    core_escape();
-}
-
-function draw_boxen(args){
-    canvas_draw_path({
-      'style': 'stroke',
-      'vertices': [
-        {
-          'type': 'rect',
-          'radius': args['radius'],
-          'startAngle': args['startAngle'],
-          'x': args['x'],
-          'y': args['y'],
-        },
-      ],
-    });
-}
-
 function draw_logic(){
     // If mouse down, draw current unsaved box.
     if(core_mouse['down']){
-        draw_boxen({
-          'radius': core_mouse['x'] - core_mouse['down-x'],
-          'startAngle': core_mouse['y'] - core_mouse['down-y'],
-          'x': core_mouse['down-x'],
-          'y': core_mouse['down-y'],
+        canvas_draw_path({
+          'style': 'stroke',
+          'vertices': [
+            {
+              'type': 'rect',
+              'radius': core_mouse['x'] - core_mouse['down-x'],
+              'startAngle': core_mouse['y'] - core_mouse['down-y'],
+              'x': core_mouse['down-x'],
+              'y': core_mouse['down-y'],
+            },
+          ],
         });
     }
 
-    // Draw saved boxen.
-    for(var box in boxen){
-        draw_boxen({
-          'radius': boxen[box]['width'],
-          'startAngle': boxen[box]['height'],
-          'x': boxen[box]['x'],
-          'y': boxen[box]['y'],
+    for(var entity in core_entities){
+        canvas_draw_path({
+          'style': 'stroke',
+          'vertices': [
+            {
+              'type': 'rect',
+              'radius': core_entities[entity]['width'],
+              'startAngle': core_entities[entity]['height'],
+              'x': core_entities[entity]['x'],
+              'y': core_entities[entity]['y'],
+            },
+          ],
         });
-    }
+    };
 }
 
 function repo_init(){
     core_repo_init({
-      'info': 'Click + Drag<br><input onclick=clear_boxen() type=button value="Clear Boxen">',
+      'info': '<input onclick=canvas_setmode() type=button value="Clear Boxen"> Click + Drag',
       'mousebinds': {
         'mouseup': {
           'todo': function(){
-              boxen.push({
-                'height': core_mouse['y'] - core_mouse['down-y'],
-                'width': core_mouse['x'] - core_mouse['down-x'],
-                'x': core_mouse['down-x'],
-                'y': core_mouse['down-y'],
+              core_entity_create({
+                'properties': {
+                  'height': core_mouse['y'] - core_mouse['down-y'],
+                  'width': core_mouse['x'] - core_mouse['down-x'],
+                  'x': core_mouse['down-x'],
+                  'y': core_mouse['down-y'],
+                },
               });
           },
         },
@@ -65,5 +58,3 @@ function repo_init(){
 function resize_logic(){
     canvas_buffer.strokeStyle = '#fff';
 }
-
-var boxen = [];
