@@ -17,20 +17,25 @@ function draw_logic(){
         });
     }
 
-    for(var entity in core_entities){
-        canvas_draw_path({
-          'style': 'stroke',
-          'vertices': [
-            {
-              'type': 'rect',
-              'radius': core_entities[entity]['width'],
-              'startAngle': core_entities[entity]['height'],
-              'x': core_entities[entity]['x'],
-              'y': core_entities[entity]['y'],
-            },
-          ],
-        });
-    };
+    core_group_modify({
+      'groups': [
+        'canvas',
+      ],
+      'todo': function(entity){
+          canvas_draw_path({
+            'style': 'stroke',
+            'vertices': [
+              {
+                'type': 'rect',
+                'radius': core_entities[entity]['width'],
+                'startAngle': core_entities[entity]['height'],
+                'x': core_entities[entity]['x'],
+                'y': core_entities[entity]['y'],
+              },
+            ],
+          });
+      },
+    });
 }
 
 function repo_init(){
