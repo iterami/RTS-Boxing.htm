@@ -59,7 +59,3 @@ function repo_init(){
     });
     canvas_init();
 }
-
-function resize_logic(){
-    canvas_buffer.strokeStyle = '#fff';
-}
