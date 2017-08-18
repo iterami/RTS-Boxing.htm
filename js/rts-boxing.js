@@ -40,7 +40,13 @@ function draw_logic(){
 
 function repo_init(){
     core_repo_init({
-      'info': '<input onclick=canvas_setmode() type=button value="Clear Boxen"> Click + Drag',
+      'info': '<input id=clear type=button value="Clear Boxen"> Click + Drag',
+      'info-events': {
+        'clear': {
+          'todo': canvas_setmode,
+          'type': 'onclick',
+        },
+      },
       'mousebinds': {
         'mouseup': {
           'todo': function(){
