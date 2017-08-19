@@ -44,7 +44,6 @@ function repo_init(){
       'info-events': {
         'clear': {
           'todo': canvas_setmode,
-          'type': 'onclick',
         },
       },
       'mousebinds': {
