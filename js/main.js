@@ -50,6 +50,7 @@ function repo_init(){
         'mouseup': {
           'todo': function(){
               core_entity_create({
+                'id': core_entity_info['canvas']['count'],
                 'properties': {
                   'height': core_mouse['y'] - core_mouse['down-y'],
                   'width': core_mouse['x'] - core_mouse['down-x'],
