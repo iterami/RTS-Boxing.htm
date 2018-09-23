@@ -2,7 +2,7 @@
 
 function draw_logic(){
     // If mouse down, draw current unsaved box.
-    if(core_mouse['down']){
+    if(core_mouse['down-0']){
         canvas_draw_path({
           'style': 'stroke',
           'vertices': [
