@@ -49,6 +49,10 @@ function repo_init(){
       'mousebinds': {
         'mouseup': {
           'todo': function(){
+              if(core_menu_open){
+                  return;
+              }
+
               core_entity_create({
                 'properties': {
                   'height': core_mouse['y'] - core_mouse['down-y'],
