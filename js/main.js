@@ -17,7 +17,7 @@ function draw_logic(){
         });
     }
 
-    core_group_modify({
+    entity_group_modify({
       'groups': [
         'canvas',
       ],
@@ -27,10 +27,10 @@ function draw_logic(){
             'vertices': [
               {
                 'type': 'rect',
-                'radius': core_entities[entity]['width'],
-                'startAngle': core_entities[entity]['height'],
-                'x': core_entities[entity]['x'],
-                'y': core_entities[entity]['y'],
+                'radius': entity_entities[entity]['width'],
+                'startAngle': entity_entities[entity]['height'],
+                'x': entity_entities[entity]['x'],
+                'y': entity_entities[entity]['y'],
               },
             ],
           });
@@ -53,7 +53,7 @@ function repo_init(){
                   return;
               }
 
-              core_entity_create({
+              entity_create({
                 'properties': {
                   'height': core_mouse['y'] - core_mouse['down-y'],
                   'width': core_mouse['x'] - core_mouse['down-x'],
