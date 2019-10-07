@@ -42,7 +42,7 @@ function repo_init(){
     core_repo_init({
       'events': {
         'clear': {
-          'onclick': canvas_setmode,
+          'onclick': core_repo_reset,
         },
       },
       'info': '<input id=clear type=button value="Clear Boxen"> Click + Drag',
@@ -64,6 +64,7 @@ function repo_init(){
           },
         },
       },
+      'reset': canvas_setmode,
       'title': 'RTS-Boxing.htm',
     });
     canvas_init();
