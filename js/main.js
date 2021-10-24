@@ -1,6 +1,6 @@
 'use strict';
 
-function draw_logic(){
+function repo_drawlogic(){
     // If mouse down, draw current unsaved box.
     if(core_mouse['down-0']){
         canvas_draw_path({
