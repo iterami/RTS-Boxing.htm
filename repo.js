@@ -44,7 +44,7 @@ function repo_init(){
           'onclick': core_repo_reset,
         },
       },
-      'info': '<input id=clear type=button value="Clear Boxen"> Click + Drag',
+      'info': '<button id=clear type=button>Clear Boxen</button> Click + Drag',
       'mousebinds': {
         'mouseup': {
           'todo': function(){
