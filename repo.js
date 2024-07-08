@@ -5,13 +5,13 @@ function repo_drawlogic(){
         canvas_draw_path({
           'style': 'stroke',
           'vertices': [
-            {
-              'type': 'rect',
-              'radius': core_mouse['x'] - core_mouse['down-x'],
-              'startAngle': core_mouse['y'] - core_mouse['down-y'],
-              'x': core_mouse['down-x'],
-              'y': core_mouse['down-y'],
-            },
+            [
+              'rect',
+              core_mouse['down-x'],
+              core_mouse['down-y'],
+              core_mouse['x'] - core_mouse['down-x'],
+              core_mouse['y'] - core_mouse['down-y'],
+            ],
           ],
         });
     }
@@ -24,13 +24,13 @@ function repo_drawlogic(){
           canvas_draw_path({
             'style': 'stroke',
             'vertices': [
-              {
-                'type': 'rect',
-                'radius': entity_entities[entity]['width'],
-                'startAngle': entity_entities[entity]['height'],
-                'x': entity_entities[entity]['x'],
-                'y': entity_entities[entity]['y'],
-              },
+              [
+                'rect',
+                entity_entities[entity]['x'],
+                entity_entities[entity]['y'],
+                entity_entities[entity]['width'],
+                entity_entities[entity]['height'],
+              ],
             ],
           });
       },
