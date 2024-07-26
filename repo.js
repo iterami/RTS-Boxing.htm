@@ -68,6 +68,3 @@ function repo_init(){
     });
     canvas_init();
 }
-
-function repo_logic(){
-}
