@@ -9,8 +9,8 @@ function repo_drawlogic(){
               'rect',
               core_pointer['down-x'],
               core_pointer['down-y'],
-              core_pointer['x'] - core_pointer['down-x'],
-              core_pointer['y'] - core_pointer['down-y'],
+              core_pointer.x - core_pointer['down-x'],
+              core_pointer.y - core_pointer['down-y'],
             ],
           ],
         });
@@ -26,10 +26,10 @@ function repo_drawlogic(){
             'vertices': [
               [
                 'rect',
-                entity['x'],
-                entity['y'],
-                entity['width'],
-                entity['height'],
+                entity.x,
+                entity.y,
+                entity.width,
+                entity.height,
               ],
             ],
           });
@@ -54,8 +54,8 @@ function repo_init(){
 
               entity_create({
                 'properties': {
-                  'height': core_pointer['y'] - core_pointer['down-y'],
-                  'width': core_pointer['x'] - core_pointer['down-x'],
+                  'height': core_pointer.y - core_pointer['down-y'],
+                  'width': core_pointer.x - core_pointer['down-x'],
                   'x': core_pointer['down-x'],
                   'y': core_pointer['down-y'],
                 },
