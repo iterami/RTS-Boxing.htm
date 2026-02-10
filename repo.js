@@ -1,5 +1,20 @@
 'use strict';
 
+function draw_box(entity){
+    canvas_draw_path({
+      'style': 'stroke',
+      'vertices': [
+        [
+          'rect',
+          entity.x,
+          entity.y,
+          entity.width,
+          entity.height,
+        ],
+      ],
+    });
+}
+
 function repo_drawlogic(){
     if(core_pointer.down_0){
         canvas_draw_path({
@@ -20,20 +35,7 @@ function repo_drawlogic(){
       'groups': [
         'canvas',
       ],
-      'todo': function(entity){
-          canvas_draw_path({
-            'style': 'stroke',
-            'vertices': [
-              [
-                'rect',
-                entity.x,
-                entity.y,
-                entity.width,
-                entity.height,
-              ],
-            ],
-          });
-      },
+      'todo': draw_box,
     });
 }
 
