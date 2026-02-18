@@ -46,7 +46,6 @@ function repo_init(){
           'onclick': canvas_setmode,
         },
       },
-      'info': '<button id=clear type=button>Clear Boxen</button> Click + Drag',
       'pointerbinds': {
         'pointerup': {
           'todo': function(){
@@ -66,6 +65,7 @@ function repo_init(){
         },
       },
       'title': 'RTS-Boxing.htm',
+      'ui': '<button id=clear type=button>Clear</button>',
     });
     canvas_init();
 }
