@@ -32,9 +32,7 @@ function repo_drawlogic(){
     }
 
     entity_group_modify({
-      'groups': [
-        'canvas',
-      ],
+      'groups': ['canvas'],
       'todo': draw_box,
     });
 }
@@ -47,21 +45,19 @@ function repo_init(){
         },
       },
       'pointerbinds': {
-        'pointerup': {
-          'todo': function(){
-              if(core_menu_open){
-                  return;
-              }
+        'pointerup': function(){
+            if(core_menu_open){
+                return;
+            }
 
-              entity_create({
-                'properties': {
-                  'height': core_pointer.y - core_pointer.down_y,
-                  'width': core_pointer.x - core_pointer.down_x,
-                  'x': core_pointer.down_x,
-                  'y': core_pointer.down_y,
-                },
-              });
-          },
+            entity_create({
+              'properties': {
+                'height': core_pointer.y - core_pointer.down_y,
+                'width': core_pointer.x - core_pointer.down_x,
+                'x': core_pointer.down_x,
+                'y': core_pointer.down_y,
+              },
+            });
         },
       },
       'title': 'RTS-Boxing.htm',
